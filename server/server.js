@@ -30,6 +30,15 @@ app.use((req, res, next) => {
   next();
 });
 
+const cors = require("cors");
+
+app.use(
+  cors({
+    origin: "https://hiremind-career-ai.netlify.app",
+    credentials: true,
+  })
+);
+
 // Body parsing
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
