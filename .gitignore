@@ -1,0 +1,31 @@
+# Dependencies
+node_modules/
+*/node_modules/
+
+# Environment
+.env
+**/.env
+server/.env
+
+# Build
+client/build/
+client/.env.local
+
+# Logs
+*.log
+server/logs/*.log
+
+# Uploads
+server/uploads/*
+!server/uploads/.gitkeep
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Docker
+.docker/

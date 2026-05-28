@@ -1,0 +1,9 @@
+{
+  "short_name": "HireMindAI",
+  "name": "HireMindAI - AI Interview Platform",
+  "icons": [],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#080A0F",
+  "background_color": "#080A0F"
+}
