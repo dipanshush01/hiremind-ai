@@ -15,7 +15,7 @@ const app = express();
 const httpServer = http.createServer(app);
 
 const io = new Server(httpServer, {
-  cors: { origin: '*', methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'] }
+  cors: { origin: '*', methods: ['GET','POST','PUT','DELETE','OPTIONS'] }
 });
 
 app.use(function(req, res, next) {
@@ -45,7 +45,6 @@ app.use('/api/analytics', require('./routes/analyticsRoutes'));
 app.use('/api/coding', require('./routes/codingRoutes'));
 
 require('./sockets/interviewSocket')(io);
-
 app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
