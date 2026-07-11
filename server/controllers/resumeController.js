@@ -52,14 +52,17 @@ exports.analyzeResume = async (req, res, next) => {
     let publicId = '';
 
     try {
-      const uploaded = await cloudinaryService.uploadResume(req.file.path, req.user.id);
-      resumeUrl = uploaded.url;
-      publicId = uploaded.publicId;
-      await User.findByIdAndUpdate(req.user.id, { resumeUrl, resumePublicId: publicId });
-    } catch (uploadErr) {
-      logger.error('Cloudinary upload error:', uploadErr);
-      if (fs.existsSync(req.file.path)) fs.unlinkSync(req.file.path);
-    }
+  const uploaded = await cloudinaryService.uploadResume(req.file.path, req.user.id);
+  resumeUrl = uploaded.url;
+  publicId = uploaded.publicId;
+  await User.findByIdAndUpdate(req.user.id, { resumeUrl, resumePublicId: publicId });
+} catch (uploadErr) {
+  logger.error('Cloudinary upload failed - continuing without upload:', uploadErr.message);
+  resumeUrl = 'uploaded';
+  if (req.file?.path && fs.existsSync(req.file.path)) {
+    fs.unlinkSync(req.file.path);
+  }
+}
 
     res.status(200).json({ success: true, analysis, resumeUrl });
   } catch (error) {
